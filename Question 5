@@ -1,6 +1,7 @@
 Find the maximum sum of any subarray of size K in a given array. Write its algorithm, 
 program. Find its time and space complexities. Explain with suitable example.  
-answer- 
+Answer- 
+
 Algorithm (Sliding Window):
 Input: Array arr[] of size n, integer K.
 
