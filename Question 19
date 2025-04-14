@@ -1,0 +1,47 @@
+How to find the maximum product subarray. Write its algorithm, program. Find its time and space complexities. Explain with suitable example.
+Answer-
+
+Algorithm: Dynamic Programming Approach
+This problem is slightly tricky because of negative numbers:
+
+A negative number can turn a minimum product into a maximum.
+
+So at every position i:
+
+Keep track of the maxProductEndingHere and minProductEndingHere.
+
+Update global maxProduct accordingly.
+
+code-
+public class MaxProductSubarray {
+    public static int maxProduct(int[] nums) {
+        if (nums.length == 0) return 0;
+
+        int maxEndingHere = nums[0];
+        int minEndingHere = nums[0];
+        int maxSoFar = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            int temp = maxEndingHere;
+
+            maxEndingHere = Math.max(Math.max(nums[i], nums[i] * maxEndingHere), nums[i] * minEndingHere);
+            minEndingHere = Math.min(Math.min(nums[i], nums[i] * temp), nums[i] * minEndingHere);
+
+            maxSoFar = Math.max(maxSoFar, maxEndingHere);
+        }
+
+        return maxSoFar;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {2, 3, -2, 4};
+        System.out.println("Maximum product subarray: " + maxProduct(nums));
+    }
+}
+
+
+
+Time and Space Complexity
+Time Complexity: O(n) — Single pass through the array.
+
+Space Complexity: O(1) — Only constant extra space used (no additional arrays or data structures).
