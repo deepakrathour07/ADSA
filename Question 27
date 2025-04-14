@@ -1,0 +1,93 @@
+Find the node where two singly linked lists intersect.  Write its algorithm, program. Find its time and space complexities. Explain with suitable example. 
+Answer-
+
+Algorithm (Two-pointer Technique)
+Initialize two pointers, a and b, pointing to the heads of the two linked lists.
+
+Traverse both lists. When a pointer reaches the end, redirect it to the other list's head.
+
+If the two lists intersect, the pointers will meet at the intersection node.
+
+If they don’t intersect, both will eventually be null after traversing both lists.
+
+This works because both pointers travel the same total distance:
+
+nginx
+Copy
+Edit
+LengthA + LengthB = LengthB + LengthA
+
+code-
+class IntersectionOfLinkedLists {
+
+    static class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int x) {
+            val = x;
+            next = null;
+        }
+    }
+
+    public static ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) return null;
+
+        ListNode a = headA;
+        ListNode b = headB;
+
+        // Traverse both lists, and switch heads when reaching the end
+        while (a != b) {
+            a = (a == null) ? headB : a.next;
+            b = (b == null) ? headA : b.next;
+        }
+
+       
+        return a;
+    }
+
+  
+    public static void printList(ListNode head) {
+        while (head != null) {
+            System.out.print(head.val + " -> ");
+            head = head.next;
+        }
+        System.out.println("null");
+    }
+
+   
+    public static void main(String[] args) {
+
+       
+        ListNode intersection = new ListNode(8);
+        intersection.next = new ListNode(10);
+
+        ListNode headA = new ListNode(3);
+        headA.next = new ListNode(7);
+        headA.next.next = intersection;
+
+       
+        ListNode headB = new ListNode(99);
+        headB.next = new ListNode(1);
+        headB.next.next = intersection;
+
+        System.out.println("List A:");
+        printList(headA);
+        System.out.println("List B:");
+        printList(headB);
+
+        ListNode result = getIntersectionNode(headA, headB);
+
+        if (result != null) {
+            System.out.println("Intersection Node Found at value: " + result.val);
+        } else {
+            System.out.println("No Intersection.");
+        }
+    }
+}
+
+Time Complexity
+O(m + n)
+Where m is the length of List A and n is the length of List B.
+
+Space Complexity
+O(1) — constant extra space.
