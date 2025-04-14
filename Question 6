@@ -1,0 +1,64 @@
+Find the length of the longest substring without repeating characters. Write its 
+algorithm, program. Find its time and space complexities. Explain with suitable 
+example. 
+answer -
+Algorithm (Sliding Window + HashSet):
+Initialize two pointers: left = 0 and right = 0 (window boundaries).
+
+Use a HashSet to store unique characters in the current window.
+
+Loop until right reaches the end of the string:
+
+If the character at right is not in the HashSet:
+
+Add it to the set.
+
+Update maxLength = max(maxLength, right - left + 1).
+
+Move right pointer forward.
+
+If the character is already in the HashSet:
+
+Remove s[left] from the set.
+
+Move left pointer forward.
+
+Return maxLength.
+
+code-
+
+import java.util.HashSet;
+
+public class LongestUniqueSubstring {
+
+    public static int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        int maxLength = 0;
+        int left = 0, right = 0;
+
+        HashSet<Character> seenChars = new HashSet<>();
+
+        while (right < n) {
+            char currentChar = s.charAt(right);
+
+            if (!seenChars.contains(currentChar)) {
+                seenChars.add(currentChar);
+                maxLength = Math.max(maxLength, right - left + 1);
+                right++;
+            } else {
+                seenChars.remove(s.charAt(left));
+                left++;
+            }
+        }
+
+        return maxLength;
+    }
+
+    public static void main(String[] args) {
+        String input = "abcabcbb";
+        int result = lengthOfLongestSubstring(input);
+        System.out.println("Length of the longest substring without repeating characters: " + result);
+    }
+}
+Time Complexity	O(n)
+Space Complexity	O(min(n, m))
