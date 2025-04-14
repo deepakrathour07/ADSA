@@ -1,0 +1,80 @@
+Rearrange numbers into the lexicographically next greater permutation. Write its 
+algorithm, program. Find its time and space complexities. Explain with suitable 
+example.
+Answer-
+
+Algorithm: Next Permutation
+Identify the pivot:
+
+Traverse from the end, find the first number that is smaller than its next number (nums[i] < nums[i + 1]). Let i be this index.
+
+Find the successor:
+
+If i was found (step 1), search for the smallest number larger than nums[i] to the right of i (i.e., from the end), call its index j.
+
+Swap the pivot and successor:
+
+Swap nums[i] and nums[j].
+
+Reverse the suffix:
+
+Reverse the subarray from i + 1 to end of the array. This ensures the smallest possible order for the remaining numbers.
+
+code-
+
+import java.util.Arrays;
+
+public class NextPermutation {
+
+    public static void nextPermutation(int[] nums) {
+        int i = nums.length - 2;
+        while (i >= 0 && nums[i] >= nums[i + 1]) {
+            i--;
+        }
+        if (i >= 0) {
+            int j = nums.length - 1;
+            while (nums[j] <= nums[i]) {
+                j--;
+            }
+            swap(nums, i, j);
+        }
+
+        
+        reverse(nums, i + 1, nums.length - 1);
+    }
+
+    private static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    private static void reverse(int[] nums, int start, int end) {
+        while (start < end) {
+            swap(nums, start, end);
+            start++;
+            end--;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3};
+
+        System.out.println("Original array: " + Arrays.toString(arr));
+        nextPermutation(arr);
+        System.out.println("Next permutation: " + Arrays.toString(arr));
+    }
+}
+Time Complexity:
+O(n) —
+
+One linear scan to find i.
+
+One scan to find j.
+
+One pass to reverse the suffix.
+
+Space Complexity:
+O(1) —
+
+In-place swaps and reversals, no extra space used.
