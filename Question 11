@@ -1,0 +1,69 @@
+Find two numbers in a sorted array that add up to a target. Write its algorithm, program. 
+Find its time and space complexities. Explain with suitable example. \
+Answer-
+
+Algorithm — Two-Pointer Approach:
+Start with two pointers:
+
+left at the beginning of the array.
+
+right at the end of the array.
+
+Loop while left < right:
+
+Calculate currentSum = arr[left] + arr[right].
+
+If currentSum == target:
+→ Return arr[left] and arr[right] (pair found).
+
+If currentSum < target:
+→ Increment left (need a larger sum).
+
+If currentSum > target:
+→ Decrement right (need a smaller sum).
+
+If no such pair is found, return no solution.
+
+code-
+public class TwoSumSortedArray {
+
+    public static int[] findTwoSum(int[] arr, int target) {
+        int left = 0;
+        int right = arr.length - 1;
+
+        while (left < right) {
+            int currentSum = arr[left] + arr[right];
+
+            if (currentSum == target) {
+                return new int[]{arr[left], arr[right]};
+            } else if (currentSum < target) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return new int[]{}; 
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 6, 8, 11, 15};
+        int target = 10;
+
+        int[] result = findTwoSum(arr, target);
+
+        if (result.length == 2) {
+            System.out.println("Pair found: " + result[0] + " + " + result[1] + " = " + target);
+        } else {
+            System.out.println("No pair found.");
+        }
+    }
+}
+Time Complexity:
+O(n) — where n is the number of elements.
+
+Only one pass through the array (pointers move inward).
+
+💡 Space Complexity:
+O(1) — constant space, only two pointers used.
+
+No extra space proportional to the input size.
