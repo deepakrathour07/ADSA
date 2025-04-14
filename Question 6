@@ -1,7 +1,8 @@
 Find the length of the longest substring without repeating characters. Write its 
 algorithm, program. Find its time and space complexities. Explain with suitable 
 example. 
-answer -
+Answer -
+
 Algorithm (Sliding Window + HashSet):
 Initialize two pointers: left = 0 and right = 0 (window boundaries).
 
