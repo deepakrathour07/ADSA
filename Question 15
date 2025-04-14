@@ -1,0 +1,79 @@
+Find the k-th smallest element in a sorted matrix. Write its algorithm, program. Find its 
+time and space complexities. Explain with suitable example.
+Answer-
+
+Algorithm: Min-Heap Approach
+Create a min-heap.
+
+Push the first element of each row into the heap:
+Heap nodes will store both value and position (row, col).
+
+Pop the smallest element from the heap k-1 times.
+
+Each time you pop, if the element has a right neighbor, push that into the heap.
+
+The element at the k-th pop is the answer.
+
+code-
+import java.util.PriorityQueue;
+
+class Element {
+    int value;
+    int row;
+    int col;
+
+    Element(int value, int row, int col) {
+        this.value = value;
+        this.row = row;
+        this.col = col;
+    }
+}
+
+public class KthSmallestInSortedMatrix {
+
+    public static int kthSmallest(int[][] matrix, int k) {
+        int n = matrix.length;
+
+        PriorityQueue<Element> minHeap = new PriorityQueue<>(
+                (a, b) -> a.value - b.value
+        );
+
+        
+        for (int row = 0; row < Math.min(n, k); row++) {
+            minHeap.offer(new Element(matrix[row][0], row, 0));
+        }
+
+        Element current = null;
+
+        
+        for (int i = 0; i < k; i++) {
+            current = minHeap.poll();
+
+            int nextCol = current.col + 1;
+            if (nextCol < n) {
+                minHeap.offer(new Element(matrix[current.row][nextCol], current.row, nextCol));
+            }
+        }
+
+        return current.value;
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 5, 9},
+            {10, 11, 13},
+            {12, 13, 15}
+        };
+        int k = 8;
+
+        int result = kthSmallest(matrix, k);
+        System.out.println("The " + k + "-th smallest element is: " + result);
+    }
+}
+Time Complexity:
+O(k log n)
+Each insertion and extraction from the heap takes O(log n) time, and we repeat it k times.
+
+Space Complexity:
+O(n)
+The heap at most holds n elements at once.
