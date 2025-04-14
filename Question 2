@@ -58,5 +58,5 @@ Preprocessing: O(n) — to build the prefix sum array.
 
 Query: O(1) — single subtraction.
 
-🗃️ Space Complexity:
+Space Complexity:
 Extra space for prefixSum[]: O(n).
