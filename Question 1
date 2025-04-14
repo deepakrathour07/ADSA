@@ -1,0 +1,29 @@
+1. Explain the concept of a prefix sum array and its applications. 
+A prefix sum array is a technique used to precompute cumulative sums of an array, so that you can quickly calculate the sum of any subarray (or range) later on.
+Applications:
+Range Sum Queries:
+
+Quickly answer multiple queries like “what’s the sum between index l and r?”
+
+Time complexity: O(1) per query after O(n) preprocessing.
+
+Counting Frequencies:
+
+Useful in problems where you need to compute how many items fall into a specific range.
+
+2D Prefix Sum:
+
+Extends to matrices for calculating submatrix sums.
+
+Sliding Window Problems:
+
+Helps simplify or speed up calculations of sums over sliding windows.
+
+Difference Arrays:
+
+Prefix sums are the inverse of difference arrays (useful in range update scenarios).
+
+Probability and Statistics:
+
+Useful for calculating cumulative distributions or expectations.
+
