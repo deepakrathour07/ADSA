@@ -1,8 +1,9 @@
 Check if an array can be split into two parts such that the sum of the prefix equals the 
 sum of the suffix. Write its algorithm, program. Find its time and space complexities. 
 Explain with suitable example. 
-answer-
- Algorithm:
+Answer-
+
+Algorithm:
 Input: Array arr[] of size n.
 
 Compute the total sum of all elements.
