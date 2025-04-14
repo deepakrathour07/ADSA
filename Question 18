@@ -1,0 +1,66 @@
+Find the maximum XOR of two numbers in an array. Write its algorithm, program. Find its time and space complexities. Explain with suitable example. 
+Answer -
+
+Algorithm: Bitwise Greedy Approach
+Initialize maxResult = 0 and mask = 0.
+
+Iterate i from 31 to 0 (assuming 32-bit integers).
+
+For each bit position i:
+
+Set the ith bit in mask.
+
+Store all prefixes of numbers with only the left i bits.
+
+Try to greedily assume the ith bit in the result can be 1.
+
+Check:
+For each prefix, if prefix ^ candidate exists in the set.
+
+If valid, update maxResult to candidate.
+
+code -
+import java.util.HashSet;
+import java.util.Set;
+
+public class MaxXORInArray {
+
+    public static int findMaximumXOR(int[] nums) {
+        int maxResult = 0;
+        int mask = 0;
+
+        for (int i = 31; i >= 0; i--) {
+            mask |= (1 << i);
+            Set<Integer> prefixes = new HashSet<>();
+
+            for (int num : nums) {
+                prefixes.add(num & mask);
+            }
+
+            int candidate = maxResult | (1 << i);
+
+            for (int prefix : prefixes) {
+                if (prefixes.contains(prefix ^ candidate)) {
+                    maxResult = candidate;
+                    break;
+                }
+            }
+        }
+
+        return maxResult;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {3, 10, 5, 25, 2, 8};
+        int result = findMaximumXOR(nums);
+        System.out.println("Maximum XOR is: " + result);
+    }
+}
+
+Time Complexity:
+O(32 * n) = O(n)
+Loop runs for 32 bits, and inside it loops over n numbers.
+
+Space Complexity:
+O(n)
+A HashSet is used to store prefixes.
