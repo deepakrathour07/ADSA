@@ -1,6 +1,8 @@
 Solve the problem of finding the equilibrium index in an array. Write its algorithm, 
 program. Find its time and space complexities. Explain with suitable example. 
-answer- Algorithm:
+Answer- 
+
+Algorithm:
 Input: An array arr[] of size n.
 
 Calculate totalSum — the total sum of the array.
