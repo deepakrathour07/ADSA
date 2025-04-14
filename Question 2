@@ -1,7 +1,9 @@
 Write a program to find the sum of elements in a given range [L, R] using a prefix sum 
 array. Write its algorithm, program. Find its time and space complexities. Explain with 
 suitable example.
-answer - Algorithm:
+Answer - 
+
+Algorithm:
 Input: Array arr[], range [L, R]
 
 Build a prefixSum[] array:
