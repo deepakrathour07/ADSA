@@ -1,0 +1,52 @@
+Count all numbers with unique digits for a given number of digits. Write its algorithm, program. Find its time and space complexities. Explain with suitable example. 
+Answer-
+
+Algorithm Explanation
+If n == 0, return 1 (only number 0).
+
+Initialize count = 1 (counting 0 as valid for 0-digit number).
+
+For every digit length i from 1 to n:
+
+For the first digit, you have 9 choices (1-9 — can’t be 0).
+
+For the second digit onwards, choices reduce since digits can’t repeat:
+
+2nd digit: 9 (since 0 is allowed here but the first digit is already used).
+
+3rd digit: 8, then 7, and so on.
+
+Multiply the choices for each digit and add to the count.
+
+
+code-
+public class UniqueDigitNumbers {
+
+    public static int countNumbersWithUniqueDigits(int n) {
+        if (n == 0) return 1;
+
+        int count = 1; 
+
+        for (int i = 1; i <= n; i++) {
+            int product = 9;  
+            int available = 9;
+
+            for (int j = 1; j < i; j++) {
+                product *= available;
+                available--;
+            }
+
+            count += product;
+        }
+
+        return count;
+    }
+
+    public static void main(String[] args) {
+        int n = 2;
+        System.out.println("Count of numbers with unique digits for n = " + n + " is: " + countNumbersWithUniqueDigits(n));
+    }
+}
+
+Time Complexity: O(n^2)
+Space Complexity: O(1).
