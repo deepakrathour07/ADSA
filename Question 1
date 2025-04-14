@@ -1,4 +1,6 @@
-1. Explain the concept of a prefix sum array and its applications. 
+Explain the concept of a prefix sum array and its applications. 
+Answer - 
+
 A prefix sum array is a technique used to precompute cumulative sums of an array, so that you can quickly calculate the sum of any subarray (or range) later on.
 Applications:
 Range Sum Queries:
