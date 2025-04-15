@@ -1,0 +1,45 @@
+Explain the difference between subsets and permutations with examples.
+Answer -
+
+Concept              | Subsets                                                                                                | Permutations
+Definition           | A subset is any selection of elements from a set (including the empty set and the full set).           | A permutation is an arrangement of all or part of the elements, where order matters.
+Order                | Order does not matter.                                                                                 | Order does matter.
+Count                | For a set of n elements, there are 2^n subsets.                                                        | For a set of n elements, there are n! permutations.
+Includes Empty?      | Yes, the empty set is a valid subset.                                                                  |No, permutations do not include an empty arrangement.
+Use-Case             | Useful when you want to explore groups or combinations of elements.                                    | Useful when you want to explore arrangements or sequences.
+
+ Example
+Given the array:
+
+csharp
+Copy
+Edit
+[1, 2, 3]
+
+Subsets: (Order doesn't matter)
+
+css
+Copy
+Edit
+[]
+[1]
+[2]
+[3]
+[1, 2]
+[1, 3]
+[2, 3]
+[1, 2, 3]
+Total: 2^3 = 8 subsets
+
+ Permutations: (Order matters)
+
+csharp
+Copy
+Edit
+[1, 2, 3]
+[1, 3, 2]
+[2, 1, 3]
+[2, 3, 1]
+[3, 1, 2]
+[3, 2, 1]
+Total: 3! = 6 permutations
