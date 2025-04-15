@@ -1,0 +1,56 @@
+Solve the problem of finding the element with maximum frequency in an array. Write its algorithm, program. Find its time and space complexities. Explain with 
+suitable example. 
+
+Answer -
+
+Algorithm:
+Initialize a HashMap to store each element as a key and its frequency as the value.
+
+Traverse the array and update the frequency count for each element in the HashMap.
+
+Iterate through the HashMap to find the element with the highest frequency.
+
+Return the element and its frequency.
+
+code-
+import java.util.HashMap;
+import java.util.Map;
+
+public class MaxFrequencyElement {
+
+    public static void main(String[] args) {
+        int[] arr = {1, 3, 2, 1, 4, 1, 3, 3, 3};
+
+        int result = findMaxFrequencyElement(arr);
+        System.out.println("Element with maximum frequency: " + result);
+    }
+
+    public static int findMaxFrequencyElement(int[] arr) {
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
+
+        
+        for (int num : arr) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        }
+
+        int maxFrequency = 0;
+        int maxElement = arr[0];
+
+        for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
+            if (entry.getValue() > maxFrequency) {
+                maxFrequency = entry.getValue();
+                maxElement = entry.getKey();
+            }
+        }
+
+        return maxElement;
+    }
+}
+ Time Complexity:
+Building the frequency map: O(n) (where n is the size of the array).
+
+Scanning the map to find the max: O(n) (in the worst case, all elements are unique).
+
+Overall: O(n).
+
+Space Complexity:o(n)
