@@ -1,0 +1,59 @@
+How to find two numbers in an array that add up to a target using hashing. Write its algorithm, program. Find its time and space complexities. Explain with 
+suitable example. 
+
+Answer-
+
+Algorithm (Using Hashing)
+Initialize a HashMap to store elements as you traverse the array. The map will hold:
+key = number, value = index (or value itself if you want the numbers).
+
+For each element num at index i:
+
+Calculate complement = target - num.
+
+Check if complement exists in the map:
+
+If yes, you’ve found the pair.
+
+If no, put num into the map and continue.
+
+code-
+import java.util.HashMap;
+import java.util.Map;
+
+public class TwoSum {
+
+    public static int[] findTwoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>(); 
+
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+
+            if (map.containsKey(complement)) {
+               
+                return new int[]{map.get(complement), i};
+            }
+
+            map.put(nums[i], i); 
+        }
+
+        return new int[]{-1, -1}; 
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {2, 7, 11, 15};
+        int target = 9;
+
+        int[] result = findTwoSum(nums, target);
+
+        if (result[0] != -1) {
+            System.out.println("Two numbers found at indices: " + result[0] + " and " + result[1]);
+        } else {
+            System.out.println("No two numbers sum up to the target.");
+        }
+    }
+}
+
+Time Complexity: O(n)
+
+Space Complexity: O(n)
