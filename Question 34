@@ -1,0 +1,60 @@
+Solve the problem of finding the subarray sum equal to K using hashing. Write its algorithm, program. Find its time and space complexities. Explain with suitable 
+example.
+Answer-
+
+Algorithm: Using Hash Map (Prefix Sum + Hashing)
+Initialize a HashMap to store (prefixSum, frequency) pairs.
+prefixSum = sum of elements from start to the current index.
+
+For every element in the array:
+
+Update prefixSum by adding the current number.
+
+Check if (prefixSum - k) exists in the map:
+
+If yes, there are map.get(prefixSum - k) subarrays ending at the current index that sum to k.
+
+Update the frequency of prefixSum in the map.
+
+The value map.get(prefixSum - k) is the count of all valid subarrays found so far.
+
+code -
+import java.util.HashMap;
+
+public class SubarraySumEqualsK {
+
+    public static int subarraySum(int[] nums, int k) {
+        int count = 0;
+        int prefixSum = 0;
+        HashMap<Integer, Integer> sumFrequency = new HashMap<>();
+
+        sumFrequency.put(0, 1);
+
+        for (int num : nums) {
+            prefixSum += num;
+
+            if (sumFrequency.containsKey(prefixSum - k)) {
+                count += sumFrequency.get(prefixSum - k);
+            }
+
+            sumFrequency.put(prefixSum, sumFrequency.getOrDefault(prefixSum, 0) + 1);
+        }
+
+        return count;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 1, 1};
+        int k = 2;
+        int result = subarraySum(nums, k);
+        System.out.println("Number of subarrays with sum " + k + ": " + result);
+    }
+}
+
+Time Complexity:
+O(n) —
+Single pass through the array.
+
+Space Complexity:
+O(n) —
+In the worst case, the HashMap could store all unique prefix sums.
