@@ -1,0 +1,22 @@
+Explain the concept of dynamic programming and its use in solving the maximum subarray problem
+Answer -
+
+Dynamic Programming (DP) is a problem-solving technique used to efficiently solve problems that have:
+
+Overlapping Subproblems — The problem can be broken down into smaller, repeating subproblems.
+
+Optimal Substructure — The global optimal solution can be built from the optimal solutions of its subproblems.
+
+
+Maximum Subarray Problem
+Problem statement:
+Given an array of integers (positive, negative, or zero), find the contiguous subarray that has the largest sum.
+
+For example:
+
+makefile
+Copy
+Edit
+Input: [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+Output: 6
+Explanation: The subarray [4, -1, 2, 1] has the largest sum = 6.
