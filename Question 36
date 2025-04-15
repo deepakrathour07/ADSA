@@ -1,0 +1,47 @@
+Generate all subsets of a given array. Write its algorithm, program. Find its time and space complexities. Explain with suitable example. 
+Answer-
+
+Algorithm: Generate All Subsets (Power Set)
+Input: An array of n elements
+Output: All possible subsets (including the empty set)
+
+Approach:
+We can solve this using two popular approaches:
+
+Bit Manipulation (Iterative)
+
+Backtracking / Recursion
+
+code -
+import java.util.ArrayList;
+import java.util.List;
+
+public class SubsetGenerator {
+
+    public static void generateSubsets(int[] nums, int index, List<Integer> current, List<List<Integer>> result) {
+        if (index == nums.length) {
+            result.add(new ArrayList<>(current)); 
+            return;
+        }
+
+        current.add(nums[index]);
+        generateSubsets(nums, index + 1, current, result);
+
+        current.remove(current.size() - 1);
+        generateSubsets(nums, index + 1, current, result);
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 3};  
+        List<List<Integer>> result = new ArrayList<>();
+        generateSubsets(nums, 0, new ArrayList<>(), result);
+
+        System.out.println("All subsets:");
+        for (List<Integer> subset : result) {
+            System.out.println(subset);
+        }
+    }
+}
+Complexity	Value
+Time Complexity	O(2^n)
+Space Complexity	O(n * 2^n)
