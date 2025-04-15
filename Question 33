@@ -1,0 +1,16 @@
+Explain the sliding window technique and its applications in array problems. 
+Answer -
+
+The Sliding Window is a commonly used algorithmic strategy to solve problems involving subarrays, substrings, or contiguous segments of a larger dataset.
+
+Applications
+
+Problem Type	Example
+
+Fixed window sum / max / min	Maximum in every window of size k
+Variable window — condition based	Smallest subarray with sum ≥ target
+Substrings in strings	Longest substring without repeating characters
+Subarrays with constraints	Number of subarrays with sum exactly k
+
+Time Complexity	Often O(n)
+Space Complexity	O(1) or O(k)
