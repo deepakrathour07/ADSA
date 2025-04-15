@@ -1,0 +1,60 @@
+Generate all permutations of a given array. Write its algorithm, program. Find its time 
+and space complexities. Explain with suitable example. 
+Answer-
+
+Algorithm (Backtracking Approach)
+Start from index 0 in the array.
+
+Swap the current index with all possible positions (i from index to n-1).
+
+Recursively call the function for the next index (index + 1).
+
+Once you reach the end (index == array.length), store or print the permutation.
+
+Backtrack (swap the elements back) to explore other possibilities.
+
+
+code -
+import java.util.ArrayList;
+import java.util.List;
+
+public class Permutations {
+
+    public static void generatePermutations(int[] array, int index, List<List<Integer>> result) {
+        if (index == array.length) {
+            List<Integer> permutation = new ArrayList<>();
+            for (int num : array) {
+                permutation.add(num);
+            }
+            result.add(permutation);
+            return;
+        }
+
+        for (int i = index; i < array.length; i++) {
+            swap(array, i, index);  
+            generatePermutations(array, index + 1, result); 
+            swap(array, i, index); 
+        }
+  
+    private static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3};
+        List<List<Integer>> result = new ArrayList<>();
+
+        generatePermutations(array, 0, result);
+
+        System.out.println("All permutations:");
+        for (List<Integer> permutation : result) {
+            System.out.println(permutation);
+        }
+    }
+}
+
+Complexity Type	Complexity
+Time Complexity	O(n! * n)
+Space Complexity	O(n! * n) (storing) + O(n) (stack)
