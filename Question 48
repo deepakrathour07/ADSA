@@ -1,0 +1,75 @@
+Solve the problem of finding the next permutation of a given array. Write its algorithm, program. Find its time and space complexities. Explain with suitable example. 
+
+Answer-
+
+Algorithm Steps:
+Find the first decreasing element (pivot)
+Traverse the array backward to find the first index i such that:
+
+css
+Copy
+Edit
+nums[i] < nums[i + 1]
+If none is found, the array is the highest permutation.
+
+Find the next larger element
+If i is found, traverse from the end and find the smallest number nums[j] such that:
+
+css
+Copy
+Edit
+nums[j] > nums[i]
+Swap nums[i] and nums[j]
+
+Reverse the suffix
+Reverse the subarray from i + 1 to the end to get the next smallest lexicographical permutation.
+
+import java.util.Arrays;
+
+public class NextPermutation {
+
+    public static void nextPermutation(int[] nums) {
+        int n = nums.length;
+        int i = n - 2;
+
+        while (i >= 0 && nums[i] >= nums[i + 1]) {
+            i--;
+        }
+
+        if (i >= 0) { 
+            int j = n - 1;
+            while (nums[j] <= nums[i]) {
+                j--;
+            }
+            swap(nums, i, j);
+        }
+
+        reverse(nums, i + 1, n - 1);
+    }
+
+    private static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    private static void reverse(int[] nums, int start, int end) {
+        while (start < end) {
+            swap(nums, start, end);
+            start++;
+            end--;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 3};
+        System.out.println("Original: " + Arrays.toString(nums));
+
+        nextPermutation(nums);
+        System.out.println("Next Permutation: " + Arrays.toString(nums));
+    }
+}
+
+Time Complexity: O(n)
+
+Space Complexity: O(1) (in-place).
