@@ -1,0 +1,30 @@
+Explain the concept of equilibrium index and its applications in array problems.
+
+Answer-
+
+An equilibrium index in an array is a position i such that:
+
+mathematica
+Copy
+Edit
+Sum of elements before i == Sum of elements after i
+Formally:
+
+Copy
+Edit
+arr[0] + arr[1] + ... + arr[i - 1] == arr[i + 1] + arr[i + 2] + ... + arr[n - 1]
+At the equilibrium index, the array is perfectly balanced around that index — the total of all numbers to the left equals the total of all numbers to the right.
+
+Applications in Algorithm Design
+
+
+Equilibrium indices are used in:
+
+
+Application	Purpose
+
+Balancing Problems                       	To detect positions of equal weight or distribution.
+Financial Analysis                         Find breaking points in profit-loss data.
+Load Balancing in Distributed Systems    	Decide cut points where load is balanced across servers.
+Partitioning Arrays                   	Used in partition logic for optimization problems.
+Game Design                            	For computing balanced positions or symmetry in scores
