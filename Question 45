@@ -1,0 +1,22 @@
+Explain the concept of priority queues and their applications in algorithm design. 
+Answer-
+
+A priority queue is a special type of abstract data structure where each element is associated with a priority, and elements are served based on their 
+priority rather than just their insertion order (like in a regular queue).
+
+Elements with higher priority are dequeued before those with lower priority.
+
+If two elements have the same priority, they are served according to their insertion order (this depends on the implementation).
+
+pplications in Algorithm Design
+Priority queues are heavily used in many classic algorithms! Here are some key examples:
+
+
+Algorithm	Purpose of Priority Queue-
+
+Dijkstra's Algorithm	              To repeatedly select the unvisited node with the lowest distance from the start.
+A Search Algorithm*	                To select the next node to explore based on the lowest estimated cost.
+Prim's Algorithm	                  To select the edge with the minimum weight to grow the Minimum Spanning Tree.
+Huffman Coding                  	  To repeatedly combine the two lowest frequency nodes to build an optimal prefix code tree.
+CPU Task Scheduling	                To pick the next task based on priority level (e.g., shortest job first).
+Event-Driven Simulation	            To process the next event in order of scheduled time.
