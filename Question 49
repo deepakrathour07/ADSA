@@ -1,0 +1,68 @@
+How to find the intersection of two linked lists. Write its algorithm, program. Find its time and space complexities. Explain with suitable example. 
+
+Answer-
+
+Algorithm: Two-Pointer Technique
+This is the most efficient and popular approach!
+
+Initialize two pointers ptrA and ptrB at the heads of ListA and ListB.
+
+Move each pointer forward one node at a time.
+
+When a pointer reaches the end of its list, redirect it to the head of the other list.
+
+If the lists intersect, the two pointers will meet at the intersection node.
+
+If they do not intersect, both pointers will reach null at the same time.
+
+code-
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) {
+        val = x;
+        next = null;
+    }
+}
+
+public class IntersectionOfLinkedLists {
+
+    public static ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) return null;
+
+        ListNode ptrA = headA;
+        ListNode ptrB = headB;
+
+        while (ptrA != ptrB) {
+            ptrA = (ptrA == null) ? headB : ptrA.next;
+            ptrB = (ptrB == null) ? headA : ptrB.next;
+        }
+
+        return ptrA;  
+    }
+
+    public static void main(String[] args) {
+        
+        ListNode common = new ListNode(8);
+        common.next = new ListNode(10);
+
+        ListNode headA = new ListNode(3);
+        headA.next = new ListNode(7);
+        headA.next.next = common;
+
+        ListNode headB = new ListNode(99);
+        headB.next = new ListNode(1);
+        headB.next.next = common;
+
+        ListNode result = getIntersectionNode(headA, headB);
+        if (result != null) {
+            System.out.println("Intersection at node with value: " + result.val);
+        } else {
+            System.out.println("No Intersection");
+        }
+    }
+}
+
+Time Complexity: O(m + n)
+
+Space Complexity: O(1)
